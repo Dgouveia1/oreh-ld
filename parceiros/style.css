@@ -1,0 +1,561 @@
+/* Reset and Base Styles (do beaihub) */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --background: hsl(0, 0%, 5%);
+    --foreground: hsl(0, 0%, 98%);
+    --primary: hsl(180, 100%, 41%);
+    --primary-foreground: hsl(0, 0%, 5%);
+    --secondary: hsl(0, 0%, 15%);
+    --muted-foreground: hsl(0, 0%, 60%);
+    --border: hsl(0, 0%, 20%);
+    --card: hsl(0, 0%, 8%);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background-color: var(--background);
+    color: var(--foreground);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Navigation (do beaihub) */
+.navigation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(13, 13, 13, 0.8);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: transform 0.3s ease-in-out;
+}
+
+.nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 0;
+    height: 65px; /* Altura fixa */
+}
+
+.logo {
+    height: 32px;
+}
+
+.nav-links {
+    display: none; /* Escondido em mobile por padrão */
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--foreground);
+}
+
+.mobile-menu-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 24px;
+    height: 2px;
+    background: var(--foreground);
+    transition: all 0.3s;
+}
+
+/* Animação do botão mobile */
+.mobile-menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.mobile-menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+.mobile-menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+
+.mobile-menu {
+    display: none;
+    position: fixed;
+    top: 65px;
+    left: 0;
+    right: 0;
+    background: var(--background);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 24px;
+    flex-direction: column;
+    gap: 24px;
+    z-index: 999;
+}
+
+.mobile-menu.active {
+    display: flex;
+}
+
+.mobile-menu a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+}
+.mobile-menu a.btn {
+    text-align: center;
+    margin-top: 16px;
+}
+
+
+/* Buttons (do beaihub) */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: 0 0 20px hsla(180, 100%, 41%, 0.5);
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 30px hsla(180, 100%, 41%, 0.7);
+    transform: translateY(-2px);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid hsla(180, 100%, 41%, 0.5);
+    color: var(--foreground);
+}
+
+.btn-outline:hover {
+    background: hsla(180, 100%, 41%, 0.1);
+    transform: translateY(-2px);
+}
+
+.btn-lg {
+    padding: 16px 32px;
+    font-size: 16px;
+}
+
+.btn-full {
+    width: 100%;
+}
+
+/* Hero Section (do beaihub) */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 80px;
+    overflow: hidden;
+    text-align: center;
+}
+
+.gradient-bg {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.2;
+    animation: pulse 4s ease-in-out infinite;
+    z-index: -1;
+}
+
+.gradient-bg-1 {
+    top: 80px;
+    right: 0;
+    width: 600px;
+    height: 600px;
+    background: linear-gradient(135deg, hsl(280, 100%, 60%), hsl(320, 100%, 60%), hsl(20, 100%, 60%));
+}
+
+.gradient-bg-2 {
+    bottom: 0;
+    left: 0;
+    width: 500px;
+    height: 500px;
+    background: linear-gradient(135deg, var(--primary), hsl(190, 100%, 50%));
+    animation-delay: 1s;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.3; transform: scale(1.05); }
+}
+
+.hero-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 50px;
+    background: hsla(0, 0%, 15%, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid hsla(180, 100%, 41%, 0.3);
+    margin-bottom: 32px;
+    font-size: 14px;
+}
+
+.hero-badge svg {
+    color: var(--primary);
+}
+
+.hero-title {
+    font-size: 40px; /* Ajustado para mobile first */
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.hero-subtitle {
+    font-size: 18px; /* Ajustado para mobile first */
+    color: var(--muted-foreground);
+    margin-bottom: 32px;
+    line-height: 1.6;
+}
+
+.hero-subtitle strong {
+    color: var(--foreground);
+}
+
+.hero-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: center;
+}
+
+/* Sections (do beaihub) */
+.section {
+    padding: 80px 0;
+    position: relative;
+    
+    /* Animação */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.section-gradient {
+    background: linear-gradient(180deg, transparent, hsla(180, 100%, 41%, 0.05), transparent);
+}
+
+.section-content-center {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.section-title {
+    font-size: 32px; /* Ajustado para mobile first */
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.section-subtitle {
+    font-size: 18px;
+    color: var(--muted-foreground);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.gradient-text {
+    background: linear-gradient(90deg, var(--primary), hsl(190, 100%, 50%));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Features Grid (do beaihub, para Vantagens) */
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.feature-card {
+    background: hsla(0, 0%, 8%, 0.5);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    transition: all 0.3s;
+}
+
+.feature-card:hover {
+    border-color: hsla(180, 100%, 41%, 0.5);
+    box-shadow: 0 0 30px hsla(180, 100%, 41%, 0.2);
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+    background: hsla(180, 100%, 41%, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    transition: background 0.3s;
+}
+
+.feature-card:hover .feature-icon {
+    background: hsla(180, 100%, 41%, 0.2);
+}
+
+.feature-icon svg {
+    color: var(--primary);
+}
+
+.feature-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.feature-description {
+    color: var(--muted-foreground);
+    line-height: 1.6;
+}
+
+/* Steps Grid (do beaihub, para Como Funciona) */
+.steps-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.step {
+    text-align: center;
+    position: relative;
+}
+
+.step-icon-wrapper {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 16px;
+}
+
+.step-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, hsla(180, 100%, 41%, 0.2), hsla(280, 100%, 60%, 0.2));
+    backdrop-filter: blur(8px);
+    border: 1px solid hsla(180, 100%, 41%, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-icon svg {
+    color: var(--primary);
+}
+
+.step-number {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.step-connector {
+    display: none; /* Escondido em mobile */
+}
+
+.step-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.step-description {
+    color: var(--muted-foreground);
+}
+
+/* Footer (do beaihub) */
+.footer {
+    border-top: 1px solid var(--border);
+    padding: 48px 0 24px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    margin-bottom: 32px;
+}
+
+.footer-brand {
+    grid-column: 1 / -1; /* Ocupa linha inteira no mobile */
+}
+
+.footer-logo {
+    height: 32px;
+    margin-bottom: 16px;
+}
+
+.footer-column h3 {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: var(--foreground);
+}
+
+.footer-column ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.footer-column a {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s;
+}
+
+.footer-column a:hover {
+    color: var(--primary);
+}
+
+.footer-bottom {
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.footer-bottom p {
+    font-size: 14px;
+    color: var(--muted-foreground);
+}
+
+/* Media Queries (Responsivo) */
+@media (min-width: 768px) {
+    .nav-links {
+        display: flex;
+    }
+    
+    .nav-content .btn {
+        display: inline-block;
+    }
+
+    .mobile-menu-toggle {
+        display: none;
+    }
+
+    .hero-title {
+        font-size: 56px;
+    }
+
+    .hero-subtitle {
+        font-size: 20px;
+    }
+
+    .hero-actions {
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .section-title {
+        font-size: 40px;
+    }
+
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 32px;
+    }
+
+    .step-connector {
+        display: block;
+        position: absolute;
+        top: 40px;
+        left: 60%;
+        width: 80%;
+        height: 2px;
+        background: linear-gradient(90deg, hsla(180, 100%, 41%, 0.5), transparent);
+        z-index: -1;
+    }
+
+    .step:last-child .step-connector {
+        display: none;
+    }
+    
+    .footer-grid {
+        grid-template-columns: 2fr 1fr 1fr 1fr;
+    }
+    .footer-brand {
+        grid-column: auto;
+    }
+}
+
