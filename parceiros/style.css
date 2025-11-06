@@ -56,7 +56,9 @@ body {
 }
 
 .logo {
-    height: 32px;
+    height: 200px;
+    width: auto;
+    max-height: 200px;
 }
 
 .nav-links {
@@ -457,7 +459,8 @@ body {
 }
 
 .footer-logo {
-    height: 32px;
+    height: 200px;
+    width: auto;
     margin-bottom: 16px;
 }
 
